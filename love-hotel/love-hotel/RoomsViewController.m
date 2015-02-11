@@ -12,6 +12,7 @@
 @interface RoomsViewController ()
 
 @property (strong, nonatomic) NSArray* rooms;
+@property (strong, nonatomic) Room* selectedRoom;
 
 @end
 
@@ -47,6 +48,16 @@
 
 
     return cell;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"RESERVE_ROOM"]) {
+        ReservationPickerViewController* destinationVC = segue.destinationViewController;
+        NSIndexPath* indexPath = [self.tableView indexPathForSelectedRow];
+        self.selectedRoom = self.rooms[indexPath.row];
+        destinationVC.room = self.selectedRoom;
+    }
+
 }
 
 @end

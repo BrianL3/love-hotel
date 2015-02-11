@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ySC-1v-f95">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Menu View Controller-->
@@ -13,14 +14,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
-                            <tableViewSection headerTitle="Section-1" id="qYd-sv-rz9">
+                            <tableViewSection headerTitle="Reserve your Room" id="qYd-sv-rz9">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="s7r-GO-hFB" detailTextLabel="FZV-cq-51E" style="IBUITableViewCellStyleValue1" id="xPd-uB-gpa">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xPd-uB-gpa" id="xx6-aF-vDg">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Hotels" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="s7r-GO-hFB">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Choose a hotel and reserve a room within" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="s7r-GO-hFB">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -36,6 +37,33 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="dhx-ri-dMK" kind="show" identifier="FIND_HOTELS" id="51z-zz-byu"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Check Availability" id="K1K-uo-Xts">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="JnX-Ux-PQD" detailTextLabel="WIj-uj-r3f" style="IBUITableViewCellStyleValue1" id="srv-Sp-JyF">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="srv-Sp-JyF" id="dzr-Pw-TZi">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Check availabilty before attempting to reserve a room" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JnX-Ux-PQD">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Check it out" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WIj-uj-r3f">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="bcI-Qu-xOy" kind="show" identifier="CHECK_AVAILABILITY" id="O73-Hg-eWP"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -81,6 +109,76 @@
             </objects>
             <point key="canvasLocation" x="2207" y="322"/>
         </scene>
+        <!--Check Availability View Controller-->
+        <scene sceneID="zJp-z5-dSs">
+            <objects>
+                <viewController id="bcI-Qu-xOy" customClass="CheckAvailabilityViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hVF-tr-nTr"/>
+                        <viewControllerLayoutGuide type="bottom" id="dAJ-aS-7Oo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eER-lk-cFX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PMl-e4-dP7">
+                                <rect key="frame" x="-11" y="72" width="623" height="29"/>
+                                <segments>
+                                    <segment title="Solid Estates"/>
+                                    <segment title="While Loop"/>
+                                    <segment title="Forr Inn"/>
+                                    <segment title="Beach View (Controller)"/>
+                                </segments>
+                            </segmentedControl>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="GG4-T5-5mb">
+                                <rect key="frame" x="140" y="190" width="320" height="162"/>
+                                <date key="date" timeIntervalSinceReferenceDate="445301345.17572099">
+                                    <!--2015-02-10 22:49:05 +0000-->
+                                </date>
+                            </datePicker>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uhQ-Yb-BjD">
+                                <rect key="frame" x="140" y="360" width="320" height="162"/>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="check what rooms are availale" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eny-Se-sTW">
+                                <rect key="frame" x="184" y="108" width="232" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sjn-PS-xeT">
+                                <rect key="frame" x="277" y="137" width="46" height="30"/>
+                                <state key="normal" title="check!">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="checkAvailabilityButtonPressed:" destination="bcI-Qu-xOy" eventType="touchUpInside" id="iSi-Fu-zV7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="eny-Se-sTW" secondAttribute="centerX" id="3B9-55-gqL"/>
+                            <constraint firstItem="eny-Se-sTW" firstAttribute="top" secondItem="PMl-e4-dP7" secondAttribute="bottom" constant="8" id="3CJ-bW-RSX"/>
+                            <constraint firstAttribute="centerX" secondItem="uhQ-Yb-BjD" secondAttribute="centerX" id="6MS-h1-9T1"/>
+                            <constraint firstAttribute="centerX" secondItem="sjn-PS-xeT" secondAttribute="centerX" id="917-d3-HW1"/>
+                            <constraint firstItem="sjn-PS-xeT" firstAttribute="top" secondItem="eny-Se-sTW" secondAttribute="bottom" constant="8" id="CFU-Ks-iMP"/>
+                            <constraint firstItem="PMl-e4-dP7" firstAttribute="top" secondItem="hVF-tr-nTr" secondAttribute="bottom" constant="8" id="Eq6-D0-d0c"/>
+                            <constraint firstAttribute="centerX" secondItem="PMl-e4-dP7" secondAttribute="centerX" id="WOO-FT-F3L"/>
+                            <constraint firstAttribute="centerX" secondItem="GG4-T5-5mb" secondAttribute="centerX" id="cE6-Bi-uUo"/>
+                            <constraint firstItem="GG4-T5-5mb" firstAttribute="top" secondItem="sjn-PS-xeT" secondAttribute="bottom" constant="23" id="lSJ-yK-ceR"/>
+                            <constraint firstItem="uhQ-Yb-BjD" firstAttribute="top" secondItem="GG4-T5-5mb" secondAttribute="bottom" constant="8" id="mjI-Mk-P1h"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="hotelPicker" destination="PMl-e4-dP7" id="h56-XH-Y8J"/>
+                        <outlet property="startDatePicker" destination="GG4-T5-5mb" id="axy-d0-rSP"/>
+                        <outlet property="stayLengthPicker" destination="uhQ-Yb-BjD" id="gmJ-BG-YM3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3DI-7P-DZ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1779" y="1107"/>
+        </scene>
         <!--Rooms View Controller-->
         <scene sceneID="sIH-o5-10x">
             <objects>
@@ -95,6 +193,9 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yp8-f5-fEd" id="gh3-QG-uQv">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="eRQ-fN-WZs" kind="show" identifier="RESERVE_ROOM" id="CqD-ME-GqC"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -106,6 +207,69 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MY7-3F-aA4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2909" y="328"/>
+        </scene>
+        <!--Reservation Picker View Controller-->
+        <scene sceneID="bgN-Q7-hAo">
+            <objects>
+                <viewController id="eRQ-fN-WZs" customClass="ReservationPickerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fc3-wk-yhE"/>
+                        <viewControllerLayoutGuide type="bottom" id="tG9-8u-kDh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4Cm-sn-mwk">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LPO-U0-7OF">
+                                <rect key="frame" x="16" y="72" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="PVn-al-VAh">
+                                <rect key="frame" x="140" y="219" width="320" height="162"/>
+                                <date key="date" timeIntervalSinceReferenceDate="445296185.13506699">
+                                    <!--2015-02-10 21:23:05 +0000-->
+                                </date>
+                            </datePicker>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vqb-Z3-m3e">
+                                <rect key="frame" x="180" y="402" width="240" height="162"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="162" id="LGB-7S-GF2"/>
+                                    <constraint firstAttribute="width" constant="240" id="fas-mA-lNb"/>
+                                </constraints>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XrK-4O-v35">
+                                <rect key="frame" x="219" y="181" width="162" height="30"/>
+                                <state key="normal" title="Make your Reservation!">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="reservationButtonPressed:" destination="eRQ-fN-WZs" eventType="touchUpInside" id="Lbr-C6-o0a"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="PVn-al-VAh" secondAttribute="centerY" id="DmF-dq-OiY"/>
+                            <constraint firstAttribute="centerX" secondItem="XrK-4O-v35" secondAttribute="centerX" id="HgD-5V-cxt"/>
+                            <constraint firstAttribute="centerX" secondItem="PVn-al-VAh" secondAttribute="centerX" id="Wdq-YF-bly"/>
+                            <constraint firstItem="LPO-U0-7OF" firstAttribute="top" secondItem="fc3-wk-yhE" secondAttribute="bottom" constant="8" id="bI3-jf-R1r"/>
+                            <constraint firstItem="LPO-U0-7OF" firstAttribute="leading" secondItem="4Cm-sn-mwk" secondAttribute="leadingMargin" id="kE2-Cc-5t4"/>
+                            <constraint firstAttribute="centerX" secondItem="vqb-Z3-m3e" secondAttribute="centerX" id="nDh-8R-r32"/>
+                            <constraint firstItem="PVn-al-VAh" firstAttribute="top" secondItem="XrK-4O-v35" secondAttribute="bottom" constant="8" id="qCz-o0-0JQ"/>
+                            <constraint firstItem="vqb-Z3-m3e" firstAttribute="top" secondItem="PVn-al-VAh" secondAttribute="bottom" constant="21" id="xzh-gx-h1X"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="roomNumberLabel" destination="LPO-U0-7OF" id="ezp-iy-mwH"/>
+                        <outlet property="startDatePicker" destination="PVn-al-VAh" id="I4A-ec-yep"/>
+                        <outlet property="stayLengthPicker" destination="vqb-Z3-m3e" id="cQN-l1-kif"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AGX-ka-qcE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3631" y="322"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2Tl-gw-b9j">

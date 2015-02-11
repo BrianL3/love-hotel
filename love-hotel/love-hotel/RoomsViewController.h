@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Hotel.h"
+#import "ReservationPickerViewController.h"
 
 @interface RoomsViewController : UITableViewController <UITableViewDataSource>
 @property (strong, nonatomic) Hotel* selectedHotel;
