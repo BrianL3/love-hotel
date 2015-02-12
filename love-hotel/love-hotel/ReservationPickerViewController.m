@@ -8,12 +8,20 @@
 
 #import "ReservationPickerViewController.h"
 #import "Guest.h"
+#import "HotelService.h"
+#import "Hotel.h"
+
 
 @interface ReservationPickerViewController ()
 @property (weak, nonatomic) IBOutlet UIPickerView *stayLengthPicker;
 @property (weak, nonatomic) IBOutlet UIDatePicker *startDatePicker;
 @property (weak, nonatomic) IBOutlet UILabel *roomNumberLabel;
 @property (strong, nonatomic) NSDate* startDate;
+
+@property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
+
+@property (weak, nonatomic) IBOutlet UIButton *reservationButton;
 
 @end
 
@@ -27,9 +35,13 @@
     //set delegate
     self.stayLengthPicker.delegate = self;
     self.stayLengthPicker.dataSource = self;
+    self.firstNameTextField.delegate = self;
+    self.lastNameTextField.delegate = self;
     
     //no reserving shit in the past
     self.startDatePicker.minimumDate = [[NSDate alloc] init];
+    //no reserving shit without a guest
+    self.reservationButton.enabled = false;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,32 +60,42 @@
     NSCalendar* calender = [NSCalendar currentCalendar];
     NSDate* endDate = [calender dateByAddingComponents:components toDate:self.startDate options:0];
     
-    Reservation *reservation = [NSEntityDescription insertNewObjectForEntityForName:@"Reservation" inManagedObjectContext:self.room.managedObjectContext];
-    reservation.startDate = self.startDate;
-    reservation.endDate = endDate;
-    reservation.room = self.room;
-    
-    //TODO: Replace this fake guest with a real guest
+    //Creates a guest with names from the text fields
     Guest* guest = [NSEntityDescription insertNewObjectForEntityForName:@"Guest" inManagedObjectContext:self.room.managedObjectContext];
-    guest.firstName = @"Candy";
-    guest.lastName = @"McStripperson";
-    reservation.guest = guest;
+    guest.firstName = self.firstNameTextField.text;
+    guest.lastName = self.lastNameTextField.text;
+
+    //ask HotelService to create and save the reservation
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MM/dd/yyyy HH:mm:ss aaa"];
-    NSString* startDateString = [formatter stringFromDate:self.startDate];
-    NSString *endDateString = [formatter stringFromDate:endDate];
-    
-    NSLog(@"A reservation was generated for Room Number %@ starting at %@ and ending at %@", [NSString stringWithFormat:@"%@", self.room.number], startDateString, endDateString);
-    
-    //save
-    NSError* saveError;
-    [self.room.managedObjectContext save:&saveError];
-    
-    if (saveError){
-        NSLog(@"Error occured in saving reservation: %@", saveError.localizedDescription);
+    // inquire with hotelservice about room availability
+    NSArray* availableRooms = [[HotelService sharedService] availableRoomsForHotel:[self.room.hotel name] withStartDate:self.startDate withEndDate:endDate];
+    BOOL canMakeReservation = true;
+    NSLog([NSString stringWithFormat:@"The number of available rooms at %@ is %lu", [self.room.hotel name], (unsigned long) availableRooms.count]);
+    for (Room* room in availableRooms){
+        NSLog([NSString stringWithFormat:@"%@ is reported as available", room.number]);
+        if  (room == self.room){
+            canMakeReservation = false;
+        }
     }
+    if (canMakeReservation){
+        [[HotelService sharedService] bookReservationForGuest:guest ForRoom:self.room startDate:self.startDate endDate:endDate];
+    }
+}//eo reservationButtonPressed func
+
+//MARK: TEXTFIELD DELEGATE
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    NSString* oldText = textField.text;
+    NSString* newText = [oldText stringByReplacingCharactersInRange:range withString:string];
+    self.reservationButton.enabled = (newText.length > 0 );
+    
+    return true;
 }
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return true;
+}
+
 
 //MARK: PICKERVIEW DELEGATE AND DATASOURCE METHODS  =========================================
 

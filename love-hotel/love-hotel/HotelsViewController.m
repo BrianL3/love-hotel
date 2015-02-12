@@ -8,11 +8,13 @@
 
 #import "HotelsViewController.h"
 #import "RoomsViewController.h"
+#import "HotelService.h"
 
 @interface HotelsViewController ()
 
 @property (strong, nonatomic) NSArray* hotels;
 @property Hotel* selectedHotel;
+
 @end
 
 @implementation HotelsViewController
@@ -23,9 +25,9 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    // get the Core Data context
-    AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
-    NSManagedObjectContext* context = appDelegate.managedObjectContext;
+    //set our context via the HotelService singleton
+    NSManagedObjectContext* context = [[HotelService sharedService] coreDataStack].managedObjectContext;
+
     // do the fetch request for all hotels
     NSFetchRequest* fetchHotels = [[NSFetchRequest alloc] initWithEntityName:@"Hotel"];
     NSError* fetchError;

@@ -33,7 +33,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -43,6 +43,9 @@
             return 1;
             break;
         case 1:
+            return 1;
+            break;
+        case 2:
             return 1;
             break;
         default:

@@ -10,6 +10,6 @@
 #import "Room.h"
 #import "Reservation.h"
 
-@interface ReservationPickerViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface ReservationPickerViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
 @property (strong,nonatomic) Room *room;
 @end
